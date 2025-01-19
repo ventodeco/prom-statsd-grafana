@@ -6,5 +6,5 @@ scrape_configs:
   # tells Prometheus to scrape metrics an address over port 9123
   - job_name: 'one_edu_app'
     static_configs:
-      - targets: ['localhost:8001'] # see statsd-exporter further down
+      - targets: ['localhost:8000'] # see statsd-exporter further down
         labels: {'host': 'one_edu_app', 'env': 'production'} # optional: just a way to identify the system exposing metrics
