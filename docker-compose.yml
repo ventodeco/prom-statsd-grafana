@@ -12,6 +12,8 @@ services:
       - --web.listen-address=:9102
     volumes:
       - ./test-mapping.yml:/tmp/test-mapping.yml
+    networks:
+      - monitoring
 
   prometheus:
     image: prom/prometheus:latest
@@ -30,6 +32,8 @@ services:
       - --enable-feature=native-histograms
     depends_on:
       - prom-statsd-exporter
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana:latest
@@ -41,7 +45,13 @@ services:
       - grafana-storage:/var/lib/grafana
     depends_on:
       - prometheus
+    networks:
+      - monitoring
 
 volumes:
   grafana-storage:
+
+networks:
+  monitoring:
+    driver: bridge
 
