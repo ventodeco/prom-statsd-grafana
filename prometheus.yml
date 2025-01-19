@@ -6,5 +6,5 @@ scrape_configs:
   # tells Prometheus to scrape metrics an address over port 9123
   - job_name: 'services'
     static_configs:
-      - targets: ['host.docker.internal:9102'] # see statsd-exporter further down
+      - targets: ['prom-statsd-exporter:9102']  # Using the service name from docker-compose
         labels: {'env': 'staging'} # optional: just a way to identify the system exposing metrics
